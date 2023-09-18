@@ -1,0 +1,33 @@
+<form class="box is-flex is-flex-direction-column is-align-items-center">
+  <h1 class="title is-2">kalkulator BMI</h1>
+    <label for="masa">Podaj mase w kilogramach</label>
+    <input class="input is-primary" type="number" name="masa" id="masa" [(ngModel)]="waga" /> <br />
+    <div *ngIf="poprawnosc_wagi" class="tag is-danger is-medium">
+        <span>Masa musi być liczbą i musi być dodatnia</span>
+    </div>
+    <br />
+    <label for="wysokosc">Podaj wzrost w centymetrach</label>
+    <input class="input is-primary" type="number" name="wysokosc" id="wysokosc" [(ngModel)]="wzrost" /> <br />
+    <div *ngIf="poprawnosc_wzrostu" class="tag is-danger is-medium">
+        <span>Wzrost musi być liczbą i musi być dodatnia</span>
+    </div>
+
+  <!-- <p>podana waga: {{ waga }}</p> -->
+  <!-- <p>podana wysokosc: {{ wzrost }}</p> -->
+  <br />
+  <button (click)="pokaz_wartosci()" class="button is-primary mt-3 mb-3">
+    Pokaż BMI
+  </button>
+  <div *ngIf="pokaz">
+    <div *ngIf="poprawny_typ_bmi; else err" class="is-flex is-flex-direction-column is-align-items-center">
+      <p class="title is-3">BMI: {{ bmi }}</p>
+      <p class="subtitle is-4 tag {{ kolor_rezultatu }}">{{ kategoria_bmi() }}</p>
+    </div>
+  </div>
+</form> 
+  <ng-template #err>
+    <div class="notification is-danger">
+      <p>Błąd: Niepoprawne dane BMI</p>
+    </div>
+  </ng-template>
+  
