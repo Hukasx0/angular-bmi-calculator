@@ -11,4 +11,7 @@ import { FormsModule } from '@angular/forms';
 export class Calculator {
   waga: number = 0;
   wzrost: number = 0;
+  get bmi(): number {
+    return parseFloat((this.waga / (this.wzrost ** 2 / 10000)).toFixed(2));
+  }
 }
