@@ -1,0 +1,8 @@
+<form>
+  <label for="masa">Podaj mase w kilogramach</label>
+  <input type="number" name="masa" id="masa" [(ngModel)]="waga" /> <br />
+  <label for="wysokosc">Podaj wysokosc w metrach</label>
+  <input type="number" name="wysokosc" id="wysokosc" [(ngModel)]="wzrost" />
+</form>
+<p>podana waga: {{ waga }}</p>
+<p>podana wysokosc: {{ wzrost }}</p>
