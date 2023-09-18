@@ -1,10 +1,28 @@
 <form>
   <label for="masa">Podaj mase w kilogramach</label>
   <input type="number" name="masa" id="masa" [(ngModel)]="waga" /> <br />
-  <label for="wysokosc">Podaj wysokosc w metrach</label>
+  <span *ngIf="poprawnosc_wagi">Masa musi być liczbą i musi być dodatnia</span>
+  <br />
+  <label for="wysokosc">Podaj wzrost w centymetrach</label>
   <input type="number" name="wysokosc" id="wysokosc" [(ngModel)]="wzrost" />
+  <span *ngIf="poprawnosc_wzrostu">
+    <br />
+    Wzrost musi być liczbą i musi być dodatnia</span
+  >
 </form>
-<p>podana waga: {{ waga }}</p>
-<p>podana wysokosc: {{ wzrost }}</p>
-<p>BMI: {{ bmi }}</p>
-<p>{{ oblicz_bmi() }}</p>
+<!-- <p>podana waga: {{ waga }}</p> -->
+<!-- <p>podana wysokosc: {{ wzrost }}</p> -->
+<br />
+<button (click)="pokaz_wartosci()">
+  {{ !pokaz ? 'Pokaż BMI' : 'schowaj BMI' }}
+</button>
+<div *ngIf="pokaz">
+  <div *ngIf="poprawny_typ_bmi; else err">
+    <p>BMI: {{ bmi }}</p>
+    <p>{{ kategoria_bmi() }}</p>
+  </div>
+</div>
+
+<ng-template #err>
+  <p>Błąd: Niepoprawne dane BMI</p>
+</ng-template>
